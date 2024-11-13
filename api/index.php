@@ -32,10 +32,10 @@ if (is_array($ipLocation)) {
 </head>
 <body class="bg-white h-screen m-0 p-0">
     <div class="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 h-full flex items-center justify-center">
-        <div class="flex items-start space-x-8 p-8 w-full max-w-6xl">
+        <div class="flex flex-col md:flex-row items-start space-y-8 md:space-y-0 md:space-x-8 p-8 w-full max-w-6xl">
             <!-- Section de gauche avec l'adresse IP et le bouton -->
-            <div class="flex flex-col justify-start items-start space-y-4 w-1/2">
-                <h1 class="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl mb-4">
+            <div class="flex flex-col justify-start items-start space-y-4 w-full md:w-1/2">
+                <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl mb-4">
                     Votre IP : <?php echo $ipAddress; ?>
                 </h1>
                 <!-- Bouton Recharger -->
@@ -45,28 +45,27 @@ if (is_array($ipLocation)) {
             </div>
 
             <!-- Section de droite avec la carte Mapbox -->
-            <div id="map" class="w-1/2 h-64 rounded-lg shadow-lg"></div> <!-- Conteneur de la carte Mapbox -->
-
+            <div id="map" class="w-full md:w-1/2 h-64 md:h-96 rounded-lg shadow-lg"></div> <!-- Conteneur de la carte Mapbox -->
             
-                <script>
-                    mapboxgl.accessToken = 'pk.eyJ1IjoieWFyb25lZSIsImEiOiJjbTNmbzFiam8wbGd3MmlzZXRocWw1cGRpIn0.pFF9ZEdce3_cbIJMCNeo2w';
+            <script>
+                mapboxgl.accessToken = 'pk.eyJ1IjoieWFyb25lZSIsImEiOiJjbTNmbzFiam8wbGd3MmlzZXRocWw1cGRpIn0.pFF9ZEdce3_cbIJMCNeo2w';
 
-                    // Créer une carte Mapbox 
-                    var map = new mapboxgl.Map({
-                        container: 'map', // L'ID de l'élément HTML où la carte sera affichée
-                        style: 'mapbox://styles/mapbox/streets-v11', // Style de la carte
-                        center: [<?php echo $longitude; ?>, <?php echo $latitude; ?>], // Longitude et latitude
-                        zoom: 10 // Niveau de zoom
-                    });
+                // Créer une carte Mapbox 
+                var map = new mapboxgl.Map({
+                    container: 'map', // L'ID de l'élément HTML où la carte sera affichée
+                    style: 'mapbox://styles/mapbox/streets-v11', // Style de la carte
+                    center: [<?php echo $longitude; ?>, <?php echo $latitude; ?>], // Longitude et latitude
+                    zoom: 10 // Niveau de zoom
+                });
 
-                    // Attendre que la carte soit bien chargée avant d'ajouter le marqueur
-                    map.on('load', function() {
-                        // Ajouter un marqueur à la carte
-                        new mapboxgl.Marker()
-                            .setLngLat([<?php echo $longitude; ?>, <?php echo $latitude; ?>]) // Position du marqueur
-                            .addTo(map); // Ajout à la carte
-                    });
-                </script>
+                // Attendre que la carte soit bien chargée avant d'ajouter le marqueur
+                map.on('load', function() {
+                    // Ajouter un marqueur à la carte
+                    new mapboxgl.Marker()
+                        .setLngLat([<?php echo $longitude; ?>, <?php echo $latitude; ?>]) // Position du marqueur
+                        .addTo(map); // Ajout à la carte
+                });
+            </script>
             
         </div>
     </div>
