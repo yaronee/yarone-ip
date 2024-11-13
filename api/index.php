@@ -1,4 +1,5 @@
 <?php
+phpinfo();
 require_once 'functions.php';
 $ipAddress = getIp(); // Récupère l'adresse IP de l'utilisateur
 
