@@ -47,7 +47,7 @@ if (is_array($ipLocation)) {
             <!-- Section de droite avec la carte Mapbox -->
             <div id="map" class="w-1/2 h-64 rounded-lg shadow-lg"></div> <!-- Conteneur de la carte Mapbox -->
 
-            <?php if ($latitude !== null && $longitude !== null); ?>
+            
                 <script>
                     mapboxgl.accessToken = 'pk.eyJ1IjoieWFyb25lZSIsImEiOiJjbTNmbzFiam8wbGd3MmlzZXRocWw1cGRpIn0.pFF9ZEdce3_cbIJMCNeo2w';
 
@@ -60,12 +60,12 @@ if (is_array($ipLocation)) {
                     });
 
                     // Attendre que la carte soit bien chargée avant d'ajouter le marqueur
-        map.on('load', function() {
-            // Ajouter un marqueur à la carte
-            new mapboxgl.Marker()
-                .setLngLat([<?php echo $longitude; ?>, <?php echo $latitude; ?>]) // Position du marqueur
-                .addTo(map); // Ajout à la carte
-        });
+                    map.on('load', function() {
+                        // Ajouter un marqueur à la carte
+                        new mapboxgl.Marker()
+                            .setLngLat([<?php echo $longitude; ?>, <?php echo $latitude; ?>]) // Position du marqueur
+                            .addTo(map); // Ajout à la carte
+                    });
                 </script>
             
         </div>
