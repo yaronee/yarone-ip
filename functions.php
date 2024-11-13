@@ -16,16 +16,15 @@ function getIp(): mixed
 /**
  * @return mixed Retourne le résultat de la requête en JSON ou null si erreur
  */
-function ipLocate(string $ipAddress): ?array
+function ipLocate(string $ipAddress): ?array // Retourne un tableau ou null
 {
     $url = "http://ip-api.com/json/$ipAddress";
 
-    $response = file_get_contents($url);
-    $jsonData = json_decode($response, true);
-    var_dump($jsonData);
+    $response = file_get_contents($url); // Récupère le contenu de l'URL
+    $jsonData = json_decode($response, true); // Convertit la réponse en tableau associatif
 
     if ($jsonData && $jsonData['status'] === 'success') {
-        return [
+        return [ // Retourne un tableau avec les clés 'latitude' et 'longitude'
             'latitude' => $jsonData['lat'],
             'longitude' => $jsonData['lon'],
         ];
@@ -34,6 +33,3 @@ function ipLocate(string $ipAddress): ?array
     // Retourne null en cas d'erreur, car la fonction doit retourner un ?array
     return null;
 }
-
-// Si l'IP n'est pas valide ou la réponse a échoué, retourne un message d'erreur
-return null;
