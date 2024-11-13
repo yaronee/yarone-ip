@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/functions.php';
+require_once __DIR__.'/../functions.php';
 $ipAddress = getIp(); // Récupère l'adresse IP de l'utilisateur
 
 // Si l'IP est 127.0.0.1, on la remplace par une IP publique
